@@ -15,8 +15,6 @@
 		0804DD8A19B941150001418B /* antiLoseAlarm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0804DD8919B941150001418B /* antiLoseAlarm2.wav */; };
 		0804DD8D19B983AE0001418B /* MusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804DD8C19B983AE0001418B /* MusicPlayerViewController.m */; };
 		0804DD9119B98A460001418B /* MusicBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 0804DD9019B98A460001418B /* MusicBean.m */; };
-		080562B219B86DD50083D399 /* connectedAlarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 080562B119B86DD50083D399 /* connectedAlarm.wav */; };
-		080562B419B871FA0083D399 /* connectedAlarm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 080562B319B871FA0083D399 /* connectedAlarm2.wav */; };
 		0851D50519C2928A00B60F0A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0851D50419C2928A00B60F0A /* QuartzCore.framework */; };
 		0859BBC319BEACE2009F5E17 /* FKRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBBC19BEACE2009F5E17 /* FKRecorder.m */; };
 		0859BBC519BEACE2009F5E17 /* FKRecordUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBC019BEACE2009F5E17 /* FKRecordUtils.m */; };
@@ -62,6 +60,8 @@
 		08F275F419C95CC2007FC75C /* HeartRateHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08F275F319C95CC2007FC75C /* HeartRateHistory.m */; };
 		08F275FA19C9AFCF007FC75C /* PedoHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08F275F919C9AFCF007FC75C /* PedoHistory.m */; };
 		08F662BC19B70498009F998D /* MoreTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08F662BB19B70498009F998D /* MoreTableTableViewController.m */; };
+		08F99AF919DAA3A1007AB50D /* connectedAlarm2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 08F99AF719DAA3A1007AB50D /* connectedAlarm2.wav */; };
+		08F99AFA19DAA3A1007AB50D /* connectedAlarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 08F99AF819DAA3A1007AB50D /* connectedAlarm.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,8 +86,6 @@
 		0804DD8C19B983AE0001418B /* MusicPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerViewController.m; sourceTree = "<group>"; };
 		0804DD8F19B98A460001418B /* MusicBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicBean.h; sourceTree = "<group>"; };
 		0804DD9019B98A460001418B /* MusicBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicBean.m; sourceTree = "<group>"; };
-		080562B119B86DD50083D399 /* connectedAlarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = connectedAlarm.wav; path = "../../../../Downloads/QQTSsound/按钮/connectedAlarm.wav"; sourceTree = "<group>"; };
-		080562B319B871FA0083D399 /* connectedAlarm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = connectedAlarm2.wav; path = "../../../../Downloads/QQTSsound/按钮/connectedAlarm2.wav"; sourceTree = "<group>"; };
 		0851D50419C2928A00B60F0A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0859BBBB19BEACE2009F5E17 /* FKRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKRecorder.h; sourceTree = "<group>"; };
 		0859BBBC19BEACE2009F5E17 /* FKRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKRecorder.m; sourceTree = "<group>"; };
@@ -164,6 +162,8 @@
 		08F275F919C9AFCF007FC75C /* PedoHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedoHistory.m; sourceTree = "<group>"; };
 		08F662BA19B70498009F998D /* MoreTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreTableTableViewController.h; sourceTree = "<group>"; };
 		08F662BB19B70498009F998D /* MoreTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableTableViewController.m; sourceTree = "<group>"; };
+		08F99AF719DAA3A1007AB50D /* connectedAlarm2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = connectedAlarm2.wav; sourceTree = "<group>"; };
+		08F99AF819DAA3A1007AB50D /* connectedAlarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = connectedAlarm.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,14 +208,14 @@
 		0805629E19B83D910083D399 /* wav */ = {
 			isa = PBXGroup;
 			children = (
+				08F99AF719DAA3A1007AB50D /* connectedAlarm2.wav */,
+				08F99AF819DAA3A1007AB50D /* connectedAlarm.wav */,
 				087916BC19CC0A73009414C4 /* heartRate.wav */,
 				0804DD8919B941150001418B /* antiLoseAlarm2.wav */,
 				0804DD8719B93FFB0001418B /* searchiPhoneAlarm2.wav */,
 				0804DD7F19B93BED0001418B /* antiLoseAlarm.wav */,
 				0804DD8019B93BED0001418B /* disconnectedAlarm.wav */,
 				0804DD8119B93BED0001418B /* heartRateAlarm.wav */,
-				080562B319B871FA0083D399 /* connectedAlarm2.wav */,
-				080562B119B86DD50083D399 /* connectedAlarm.wav */,
 			);
 			name = wav;
 			sourceTree = "<group>";
@@ -506,12 +506,12 @@
 				087916BD19CC0A73009414C4 /* heartRate.wav in Resources */,
 				08E33A7D19A42AB70034D7D6 /* Images.xcassets in Resources */,
 				0804DD8A19B941150001418B /* antiLoseAlarm2.wav in Resources */,
-				080562B419B871FA0083D399 /* connectedAlarm2.wav in Resources */,
 				08E33A6F19A42AB70034D7D6 /* InfoPlist.strings in Resources */,
-				080562B219B86DD50083D399 /* connectedAlarm.wav in Resources */,
+				08F99AFA19DAA3A1007AB50D /* connectedAlarm.wav in Resources */,
 				0804DD8519B93BED0001418B /* heartRateAlarm.wav in Resources */,
 				0804DD8319B93BED0001418B /* antiLoseAlarm.wav in Resources */,
 				0804DD8419B93BED0001418B /* disconnectedAlarm.wav in Resources */,
+				08F99AF919DAA3A1007AB50D /* connectedAlarm2.wav in Resources */,
 				0804DD8819B93FFB0001418B /* searchiPhoneAlarm2.wav in Resources */,
 				08E33A7819A42AB70034D7D6 /* Main.storyboard in Resources */,
 			);
