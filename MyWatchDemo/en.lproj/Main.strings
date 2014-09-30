@@ -1,0 +1,42 @@
+
+/* Class = "IBUILabel"; text = "10000"; ObjectID = "2pW-gu-O6m"; */
+"2pW-gu-O6m.text" = "10000";
+
+/* Class = "IBUITabBarItem"; title = "HeartRate"; ObjectID = "5oX-tX-fCM"; */
+"5oX-tX-fCM.title" = "HeartRate";
+
+/* Class = "IBUILabel"; text = "km"; ObjectID = "6aq-p0-gys"; */
+"6aq-p0-gys.text" = "km";
+
+/* Class = "IBUILabel"; text = "BALANCE"; ObjectID = "AVb-2X-cBf"; */
+"AVb-2X-cBf.text" = "BALANCE";
+
+/* Class = "IBUILabel"; text = "TARGET"; ObjectID = "AcC-2M-gby"; */
+"AcC-2M-gby.text" = "TARGET";
+
+/* Class = "IBUITabBarItem"; title = "SLEEP"; ObjectID = "HaS-j6-2P4"; */
+"HaS-j6-2P4.title" = "SLEEP";
+
+/* Class = "IBUILabel"; text = "BALANCE"; ObjectID = "OsZ-st-Rvh"; */
+"OsZ-st-Rvh.text" = "BALANCE";
+
+/* Class = "IBUILabel"; text = "0.00"; ObjectID = "X5y-EH-HvO"; */
+"X5y-EH-HvO.text" = "0.00";
+
+/* Class = "IBUITabBarItem"; title = "PEDO"; ObjectID = "Xr7-zI-QNG"; */
+"Xr7-zI-QNG.title" = "PEDO";
+
+/* Class = "IBUILabel"; text = "00:00:00"; ObjectID = "ZHN-rG-mkf"; */
+"ZHN-rG-mkf.text" = "00:00:00";
+
+/* Class = "IBUILabel"; text = "9999"; ObjectID = "j37-G8-HYS"; */
+"j37-G8-HYS.text" = "9999";
+
+/* Class = "IBUILabel"; text = "BALANCE"; ObjectID = "ldi-8o-5TF"; */
+"ldi-8o-5TF.text" = "BALANCE";
+
+/* Class = "IBUITabBarItem"; title = "MORE"; ObjectID = "nHs-Rb-lX4"; */
+"nHs-Rb-lX4.title" = "MORE";
+
+/* Class = "IBUILabel"; text = "steps"; ObjectID = "ua8-k4-OsY"; */
+"ua8-k4-OsY.text" = "steps";

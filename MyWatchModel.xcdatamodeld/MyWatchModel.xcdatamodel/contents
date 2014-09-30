@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="HeartRateHistory" representedClassName="HeartRateHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PedoCalHistory" representedClassName="PedoCalHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PedoDistHistory" representedClassName="PedoDistHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PedoHistory" representedClassName="PedoHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordTag" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PedoStepHistory" representedClassName="PedoStepHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PedoTimeHistory" representedClassName="PedoTimeHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SleepMonitorHistory" representedClassName="SleepMonitorHistory" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="HeartRateHistory" positionX="-54" positionY="9" width="128" height="73"/>
+        <element name="PedoHistory" positionX="-45" positionY="27" width="128" height="88"/>
+        <element name="SleepMonitorHistory" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="PedoStepHistory" positionX="-45" positionY="27" width="128" height="73"/>
+        <element name="PedoDistHistory" positionX="-36" positionY="36" width="128" height="73"/>
+        <element name="PedoCalHistory" positionX="-27" positionY="45" width="128" height="73"/>
+        <element name="PedoTimeHistory" positionX="-9" positionY="72" width="128" height="73"/>
+    </elements>
+</model>
