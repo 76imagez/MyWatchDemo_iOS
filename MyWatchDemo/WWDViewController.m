@@ -16,6 +16,7 @@
 @end
 
 @implementation WWDViewController
+NSUserDefaults* defaults;
 
 - (void)viewDidLoad
 {
@@ -33,6 +34,8 @@
     
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"pedometer" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pedometer:) name:@"pedometer" object:nil];
+    
+    defaults = [NSUserDefaults standardUserDefaults];
         
 }
 
@@ -95,8 +98,15 @@
     NSString* speed = [WWDTools getSpeedFromDistance:distanceString andTime:timeStr];
     NSString* actTime = [WWDTools getHHMMSSFromStringHMS:timeStr];
     if(outVal > 0){
-         NSString* target = [NSString stringWithFormat:@"%0.02f", outVal / 100.00f];
-        _targetRateView.text = target;
+        NSInteger targetInt = [defaults integerForKey:@"targetInteger"];
+        if (targetInt > 0) {
+            float targetF = targetInt * 100.00f;
+            NSString* target = [NSString stringWithFormat:@"%0.02f", outVal / targetF];
+            _targetRateView.text = target;
+        }else{
+            NSString* target = [NSString stringWithFormat:@"%0.02f", outVal / 100.00f];
+            _targetRateView.text = target;
+        }
     }else{
         _targetRateView.text = @"0.00";
     }

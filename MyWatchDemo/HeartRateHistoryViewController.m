@@ -43,6 +43,11 @@ NSMutableArray* recordValueArray;
     [request setEntity:entity];
     NSError* error = nil;
     NSArray* historyArray = [[self.myAppDelegate.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
+    if (historyArray.count > 0) {
+        NSSortDescriptor* firstDescriptor = [[NSSortDescriptor alloc] initWithKey:@"recordDate" ascending:NO];
+        NSArray* sortDescriptors = [NSArray arrayWithObjects:firstDescriptor, nil];
+        historyArray = [historyArray sortedArrayUsingDescriptors:sortDescriptors];
+    }
     NSLog(@"history array count : %d",historyArray.count);
     if(historyArray.count > 0){
         for (int i = 0; i < historyArray.count; i++) {

@@ -103,6 +103,10 @@
     return self;
 }
 
+-(void)deviceOrientationDidChange{
+
+}
+
 - (BOOL)setupSession{
     BOOL success = NO;
     //如果后置有闪光灯

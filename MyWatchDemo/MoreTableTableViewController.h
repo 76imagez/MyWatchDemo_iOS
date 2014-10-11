@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WWDAppDelegate.h"
 
-@interface MoreTableTableViewController : UITableViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface MoreTableTableViewController : UITableViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *disconnectedAlarm;
 @property (weak, nonatomic) IBOutlet UISwitch *antiLoseAlarm;
 @property (weak, nonatomic) IBOutlet UISwitch *heartRateAlarm;

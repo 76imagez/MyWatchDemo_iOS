@@ -18,8 +18,6 @@
 		0851D50519C2928A00B60F0A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0851D50419C2928A00B60F0A /* QuartzCore.framework */; };
 		0859BBC319BEACE2009F5E17 /* FKRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBBC19BEACE2009F5E17 /* FKRecorder.m */; };
 		0859BBC519BEACE2009F5E17 /* FKRecordUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBC019BEACE2009F5E17 /* FKRecordUtils.m */; };
-		0859BBC619BEACE2009F5E17 /* FKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBC219BEACE2009F5E17 /* FKViewController.m */; };
-		0859BBC919BEBF34009F5E17 /* FKRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBC819BEBF34009F5E17 /* FKRecordManager.m */; };
 		0859BBD719BEE32E009F5E17 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBD419BEE32E009F5E17 /* CameraViewController.m */; };
 		0859BBD819BEE32E009F5E17 /* WWDRecoredManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0859BBD519BEE32E009F5E17 /* WWDRecoredManager.m */; };
 		087916BD19CC0A73009414C4 /* heartRate.wav in Resources */ = {isa = PBXBuildFile; fileRef = 087916BC19CC0A73009414C4 /* heartRate.wav */; };
@@ -40,6 +38,7 @@
 		08E33A8E19A42AB70034D7D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08E33A8C19A42AB70034D7D6 /* InfoPlist.strings */; };
 		08E33A9019A42AB70034D7D6 /* MyWatchDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E33A8F19A42AB70034D7D6 /* MyWatchDemoTests.m */; };
 		08E6087A19B060420082365E /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E6087919B060420082365E /* ConnectViewController.m */; };
+		08E8435219E93730007E2F13 /* AlarmClockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E8435119E93730007E2F13 /* AlarmClockViewController.m */; };
 		08EA741B19CA7C0B00E38B8F /* SleepMonitorHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EA741A19CA7C0B00E38B8F /* SleepMonitorHistory.m */; };
 		08EA741E19CA8E1F00E38B8F /* PedoStepHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EA741D19CA8E1F00E38B8F /* PedoStepHistory.m */; };
 		08EA742119CA8E2000E38B8F /* PedoDistHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EA742019CA8E2000E38B8F /* PedoDistHistory.m */; };
@@ -91,10 +90,6 @@
 		0859BBBC19BEACE2009F5E17 /* FKRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKRecorder.m; sourceTree = "<group>"; };
 		0859BBBF19BEACE2009F5E17 /* FKRecordUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKRecordUtils.h; sourceTree = "<group>"; };
 		0859BBC019BEACE2009F5E17 /* FKRecordUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKRecordUtils.m; sourceTree = "<group>"; };
-		0859BBC119BEACE2009F5E17 /* FKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKViewController.h; sourceTree = "<group>"; };
-		0859BBC219BEACE2009F5E17 /* FKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKViewController.m; sourceTree = "<group>"; };
-		0859BBC719BEBF34009F5E17 /* FKRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKRecordManager.h; sourceTree = "<group>"; };
-		0859BBC819BEBF34009F5E17 /* FKRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FKRecordManager.m; sourceTree = "<group>"; };
 		0859BBD319BEE32E009F5E17 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		0859BBD419BEE32E009F5E17 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		0859BBD519BEE32E009F5E17 /* WWDRecoredManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWDRecoredManager.m; sourceTree = "<group>"; };
@@ -125,6 +120,8 @@
 		08E33A8F19A42AB70034D7D6 /* MyWatchDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyWatchDemoTests.m; sourceTree = "<group>"; };
 		08E6087819B060420082365E /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		08E6087919B060420082365E /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		08E8435019E93730007E2F13 /* AlarmClockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmClockViewController.h; sourceTree = "<group>"; };
+		08E8435119E93730007E2F13 /* AlarmClockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmClockViewController.m; sourceTree = "<group>"; };
 		08EA741919CA7C0B00E38B8F /* SleepMonitorHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepMonitorHistory.h; sourceTree = "<group>"; };
 		08EA741A19CA7C0B00E38B8F /* SleepMonitorHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SleepMonitorHistory.m; sourceTree = "<group>"; };
 		08EA741C19CA8E1F00E38B8F /* PedoStepHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedoStepHistory.h; sourceTree = "<group>"; };
@@ -227,14 +224,10 @@
 				0859BBD419BEE32E009F5E17 /* CameraViewController.m */,
 				0859BBD619BEE32E009F5E17 /* WWDRecoredManager.h */,
 				0859BBD519BEE32E009F5E17 /* WWDRecoredManager.m */,
-				0859BBC719BEBF34009F5E17 /* FKRecordManager.h */,
-				0859BBC819BEBF34009F5E17 /* FKRecordManager.m */,
 				0859BBBB19BEACE2009F5E17 /* FKRecorder.h */,
 				0859BBBC19BEACE2009F5E17 /* FKRecorder.m */,
 				0859BBBF19BEACE2009F5E17 /* FKRecordUtils.h */,
 				0859BBC019BEACE2009F5E17 /* FKRecordUtils.m */,
-				0859BBC119BEACE2009F5E17 /* FKViewController.h */,
-				0859BBC219BEACE2009F5E17 /* FKViewController.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -380,6 +373,8 @@
 				0859BBBA19BEACCB009F5E17 /* Camera */,
 				08F662BA19B70498009F998D /* MoreTableTableViewController.h */,
 				08F662BB19B70498009F998D /* MoreTableTableViewController.m */,
+				08E8435019E93730007E2F13 /* AlarmClockViewController.h */,
+				08E8435119E93730007E2F13 /* AlarmClockViewController.m */,
 			);
 			name = more;
 			sourceTree = "<group>";
@@ -540,12 +535,12 @@
 				08EA997E19C682BE0095D9A9 /* PNLineChartView.m in Sources */,
 				08EA742719CA8E2000E38B8F /* PedoTimeHistory.m in Sources */,
 				08E33A7119A42AB70034D7D6 /* main.m in Sources */,
-				0859BBC919BEBF34009F5E17 /* FKRecordManager.m in Sources */,
 				08EA998F19C6E5650095D9A9 /* MyWatchModel.xcdatamodeld in Sources */,
 				08F275FA19C9AFCF007FC75C /* PedoHistory.m in Sources */,
 				08EA8E4A19C8519100A2C94D /* MyLineChartView.m in Sources */,
 				0859BBC519BEACE2009F5E17 /* FKRecordUtils.m in Sources */,
 				08EA998219C695A30095D9A9 /* SleepMonitorPeriod.m in Sources */,
+				08E8435219E93730007E2F13 /* AlarmClockViewController.m in Sources */,
 				08E33A7B19A42AB70034D7D6 /* WWDViewController.m in Sources */,
 				08EA741E19CA8E1F00E38B8F /* PedoStepHistory.m in Sources */,
 				08E6087A19B060420082365E /* ConnectViewController.m in Sources */,
@@ -564,7 +559,6 @@
 				08E33A7519A42AB70034D7D6 /* WWDAppDelegate.m in Sources */,
 				08EA741B19CA7C0B00E38B8F /* SleepMonitorHistory.m in Sources */,
 				08EA997F19C682BE0095D9A9 /* PNPlot.m in Sources */,
-				0859BBC619BEACE2009F5E17 /* FKViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +644,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -682,6 +677,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -695,10 +691,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyWatchDemo/MyWatchDemo-Prefix.pch";
 				INFOPLIST_FILE = "MyWatchDemo/MyWatchDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CorePlot",
-				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "My Watch";
 				PROVISIONING_PROFILE = "";
@@ -716,10 +708,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyWatchDemo/MyWatchDemo-Prefix.pch";
 				INFOPLIST_FILE = "MyWatchDemo/MyWatchDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CorePlot",
-				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "My Watch";
 				PROVISIONING_PROFILE = "";

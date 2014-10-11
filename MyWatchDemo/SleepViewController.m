@@ -35,6 +35,7 @@
     // Do any additional setup after loading the view.
     _myAppDelegate = (WWDAppDelegate*)[[UIApplication sharedApplication]delegate];
 
+    [self strokeSleepChartViewWithSpleepValue:nil andTimeFrame:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

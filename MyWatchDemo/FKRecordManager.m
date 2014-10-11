@@ -116,6 +116,9 @@
 	}
 	return self;
 }
+
+- (void)deviceOrientationDidChange{
+}
 - (BOOL) setupSession
 {
 	BOOL success = NO;

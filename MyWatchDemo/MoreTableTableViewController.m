@@ -117,15 +117,40 @@ UIImagePickerController* picker;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    self.hidesBottomBarWhenPushed = YES;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSUInteger rowNO = indexPath.row;
     NSUInteger rowSection = indexPath.section;
-    if(rowNO == 1 && rowSection == 0){
-//        self.hidesBottomBarWhenPushed = YES;
-        [self setHidesBottomBarWhenPushed:YES];
-        [self performSegueWithIdentifier:@"cameraSegue" sender:nil];
-        [self setHidesBottomBarWhenPushed:NO];
+    if (rowSection == 0) {
+        if (rowNO == 1) {
+            [self setHidesBottomBarWhenPushed:YES];
+            [self performSegueWithIdentifier:@"cameraSegue" sender:nil];
+            [self setHidesBottomBarWhenPushed:NO];
+        }
+        //syn time
+        else if(rowNO == 4){
+            [_myAppDelegate writeToPeripheral:[WWDTools getNowTimeToNSStringFromWrite]];
+        }
+        //syn records
+        else if(rowNO == 5){
+            [self.myAppDelegate writeToPeripheral:@"FE00"];
+        }
+        //close all alarm
+        else if(rowNO == 3){
+            
+        }
+        //close my watch
+        else if(rowNO ==6){
+            UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure to close My Watch?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Confirm" otherButtonTitles:nil, nil];
+            sheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+            [sheet showInView:self.view];
+        }
     }
-    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [self.myAppDelegate writeToPeripheral:@"E101"];
+    }
 }
 
 // 当得到照片或者视频后，调用该方法

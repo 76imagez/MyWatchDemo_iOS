@@ -13,6 +13,7 @@
 @end
 
 @implementation HeartRateViewController
+NSThread* thread;//使用线程来监听心率的值归零
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +33,12 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heartRate:) name:@"heartRate" object:nil];
     [_heartImageView setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"heart_rate_heart"],[UIImage imageNamed:@"heart_rate_heart_clear"], nil]];
     [_heartImageView setContentMode:UIViewContentModeScaleAspectFill];
+    
+}
+
+- (void)updateUI{
+    NSLog(@"after 4seconds");
+    _heartRateCount.text = @"0";
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -56,7 +63,7 @@
 
 - (void)heartRate:(NSNotification*)myNotification{
     
-    NSLog(@"收到heartRate通知而已");
+//    NSLog(@"收到heartRate通知而已");
     
     NSString* heartRateValue = [myNotification object];
     
@@ -83,7 +90,7 @@
     _minimum.text = [NSString stringWithFormat:@"%d", min];
     _maximum.text = [NSString stringWithFormat:@"%d", max];
     
-    if ((_heartRateCount < _minimum || _heartRateCount > _maximum) && _heartRateCount != 0) {
+    if ((count < min || count > max) && count != 0 && min != 0 && max != 0) {
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         NSString* disconnectedAlarmValue = [defaults stringForKey:@"heartRateAlarm"];
         if ([@"OFF" isEqual:disconnectedAlarmValue]) {
@@ -92,7 +99,7 @@
             NSLog(@"%@", disconnectedAlarmValue);
             [WWDTools avAudioPlayerStartOnceFromWAV:@"heartRate"];
         }
-    }    
+    }
 }
 
 @end

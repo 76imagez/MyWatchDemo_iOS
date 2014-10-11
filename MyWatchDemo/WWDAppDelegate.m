@@ -39,6 +39,7 @@ NSRunLoop* runLoop;
     _musicArray = [NSArray array];
     [self getMusicMessage];
     
+    //给audio添加远程设备支持?
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setActive:YES error:nil];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
@@ -54,29 +55,29 @@ NSRunLoop* runLoop;
     pedoTimeEntity = [NSEntityDescription entityForName:@"PedoTimeHistory" inManagedObjectContext:self.managedObjectContext];
     
     //电话监听
-    self.center = [[CTCallCenter alloc] init];
-    self.center.callEventHandler = ^(CTCall* call) {
-        if ([call.callState isEqualToString:CTCallStateDisconnected])
-        {
-            NSLog(@"Call has been disconnected");
-        }
-        else if ([call.callState isEqualToString:CTCallStateConnected])
-        {
-            NSLog(@"Call has just been connected");
-        }
-        else if([call.callState isEqualToString:CTCallStateIncoming])
-        {
-            NSLog(@"Call is incoming");
-        }
-        else if ([call.callState isEqualToString:CTCallStateDialing])
-        {
-            NSLog(@"call is dialing");
-        }
-        else
-        {
-            NSLog(@"Nothing is done");
-        }
-    };
+//    self.center = [[CTCallCenter alloc] init];
+//    self.center.callEventHandler = ^(CTCall* call) {
+//        if ([call.callState isEqualToString:CTCallStateDisconnected])
+//        {
+//            NSLog(@"Call has been disconnected");
+//        }
+//        else if ([call.callState isEqualToString:CTCallStateConnected])
+//        {
+//            NSLog(@"Call has just been connected");
+//        }
+//        else if([call.callState isEqualToString:CTCallStateIncoming])
+//        {
+//            NSLog(@"Call is incoming");
+//        }
+//        else if ([call.callState isEqualToString:CTCallStateDialing])
+//        {
+//            NSLog(@"call is dialing");
+//        }
+//        else
+//        {
+//            NSLog(@"Nothing is done");
+//        }
+//    };
     
     return YES;
 }
@@ -117,10 +118,10 @@ NSRunLoop* runLoop;
     
     switch (central.state) {
         case CBCentralManagerStatePoweredOn:
-            NSLog(@"蓝牙已经开启,可以扫描设备!\n");
+//            NSLog(@"蓝牙已经开启,可以扫描设备!\n");
             break;
         case CBCentralManagerStatePoweredOff:
-            NSLog(@"蓝牙未开启,扫描不到设备!\n");
+//            NSLog(@"蓝牙未开启,扫描不到设备!\n");
         default:
             break;
     }
@@ -131,8 +132,8 @@ NSRunLoop* runLoop;
 //    NSLog(@"已发现 peripheral: %@ rssi: %@, uuid: %@ advertisementData: %@", peripheral, RSSI, peripheral.UUID, advertisementData);
     
     [_myPeripherals addObject:peripheral];
-    NSInteger count = [_myPeripherals count];
-    NSLog(@"my periphearls count : %ld\n", (long)count);
+//    NSInteger count = [_myPeripherals count];
+//    NSLog(@"my periphearls count : %ld\n", (long)count);
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"myDidDiscoverPeripheral" object:nil];
 
@@ -143,7 +144,7 @@ NSRunLoop* runLoop;
 //    NSLog(@"成功连接 peripheral: %@ with UUID: %@",peripheral, peripheral.UUID);
     [self.myPeripheral setDelegate:self];
     [self.myPeripheral discoverServices:nil];
-    NSLog(@"扫描服务...");
+//    NSLog(@"扫描服务...");
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"myDidConnectPeripheral" object:nil];
     
@@ -155,7 +156,7 @@ NSRunLoop* runLoop;
 
 //掉线时调用
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
-    NSLog(@"periheral has disconnect");
+//    NSLog(@"periheral has disconnect");
     [_timer invalidate];
     _timer = nil;
     [_myCentralManager connectPeripheral:_myPeripheral options:nil];
@@ -167,49 +168,49 @@ NSRunLoop* runLoop;
     if ([@"OFF" isEqual:disconnectedAlarmValue]) {
         
     }else{
-        NSLog(@"%@", disconnectedAlarmValue);
+//        NSLog(@"%@", disconnectedAlarmValue);
         [WWDTools avAudioPlayerStartOnceFromWAV:@"disconnectedAlarm"];
     }
 }
 
 //连接外设失败
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
-    NSLog(@"%@", error);
+//    NSLog(@"%@", error);
 
 }
 
 //已发现服务
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error{
-    NSLog(@"发现服务!");
+//    NSLog(@"发现服务!");
     int i = 0;
 //    for(CBService* s in peripheral.services){
 //        [self.nServices addObject:s];
 //    }
     for(CBService* s in peripheral.services){
-        NSLog(@"%d :服务 UUID: %@(%@)", i, s.UUID.data, s.UUID);
+//        NSLog(@"%d :服务 UUID: %@(%@)", i, s.UUID.data, s.UUID);
         i++;
         [peripheral discoverCharacteristics:nil forService:s];
-        NSLog(@"扫描Characteristics...");
+//        NSLog(@"扫描Characteristics...");
     }
 }
 
 //已发现characteristcs
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
     for(CBCharacteristic* c in service.characteristics){
-        NSLog(@"特征 UUID: %@ (%@)", c.UUID.data, c.UUID);
+//        NSLog(@"特征 UUID: %@ (%@)", c.UUID.data, c.UUID);
         if([c.UUID isEqual:[CBUUID UUIDWithString:@"FFF2"]]){
             self.writeCharacteristic = c;
-            //            [self.myPeripheral setNotifyValue:YES forCharacteristic:c];
-            //            [self.myPeripheral readValueForCharacteristic:c];
-            NSLog(@"找到WRITE : %@", c);
+//            NSLog(@"找到WRITE : %@", c);
+            //找到write的characteristic,将时间更新发过去
+            [self writeToPeripheral:[WWDTools getNowTimeToNSStringFromWrite]];
         }else if([c.UUID isEqual:[CBUUID UUIDWithString:@"FFF1"]]){
             self.readCharacteristic = c;
-            //            CBDescriptor* description = [self.myPeripheral description];
-            //            [description setValue:(id) forKey:(NSString *)];
             [self.myPeripheral setNotifyValue:YES forCharacteristic:c];
-            [self.myPeripheral readValueForCharacteristic:c];
-            NSLog(@"找到READ : %@", c);
-        }else if([c.UUID isEqual:[CBUUID UUIDWithString:@"2A37"]]){
+            //暂时取消read,没有必要
+//            [self.myPeripheral readValueForCharacteristic:c];
+//            NSLog(@"找到READ : %@", c);
+        }
+        else if([c.UUID isEqual:[CBUUID UUIDWithString:@"2A37"]]){
             self.heartNotiCharacteristic = c;
         }
     }
@@ -217,44 +218,43 @@ NSRunLoop* runLoop;
 
 - (void)getRssiSelector:(id)sender{
     if(!_heartNotiCharacteristic){
-        NSLog(@"writeCharacteristic is nil!");
+//        NSLog(@"writeCharacteristic is nil!");
         return;
     }
 //    [self writeToPeripheral:@"0000"];
-    [_myPeripheral readValueForCharacteristic:_heartNotiCharacteristic];
+//    [_myPeripheral readValueForCharacteristic:_heartNotiCharacteristic];
     [_myPeripheral readRSSI];
-    NSLog(@"get rssi selector");
+//    NSLog(@"get rssi selector");
 }
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error{
     
     NSNumber* rssi = [peripheral RSSI];
-    
-    if([rssi intValue]< -84){
+    //将距离报警的信号设为-94
+    if([rssi intValue]< -94){
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         NSString* disconnectedAlarmValue = [defaults stringForKey:@"antiLoseAlarm"];
         if ([@"OFF" isEqual:disconnectedAlarmValue]) {
             
         }else{
-            NSLog(@"%@", disconnectedAlarmValue);
+//            NSLog(@"%@", disconnectedAlarmValue);
             [WWDTools avAudioPlayerStartOnceFromWAV:@"searchiPhoneAlarm2"];
         }
         
     }
-    
-    NSLog(@" rssi is %@", rssi);
+//    NSLog(@" rssi is %@", rssi);
 }
 
 //中心读取外设实时数据
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     if(error){
-        NSLog(@"Error changing notification state: %@", error.localizedDescription);
+//        NSLog(@"Error changing notification state: %@", error.localizedDescription);
     }
     //Notification has started
     if(characteristic.isNotifying){
 //        [peripheral readValueForCharacteristic:characteristic];
     }else{
-        NSLog(@"Notification stopped on %@. Disconnting", characteristic);
+//        NSLog(@"Notification stopped on %@. Disconnting", characteristic);
         [self.myCentralManager cancelPeripheralConnection:self.myPeripheral];
     }
 }
@@ -262,7 +262,7 @@ NSRunLoop* runLoop;
 //向peripheral中写入数据
 - (void)writeToPeripheral:(NSString *)data{
     if(!_writeCharacteristic){
-        NSLog(@"writeCharacteristic is nil!");
+//        NSLog(@"writeCharacteristic is nil!");
         return;
     }
 //    NSData* value = [self dataWithHexstring:data];
@@ -272,12 +272,12 @@ NSRunLoop* runLoop;
 
 //向peripheral中写入数据后的回调函数
 - (void)peripheral:(CBPeripheral*)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    NSLog(@"write value success : %@", characteristic);
+//    NSLog(@"write value success : %@", characteristic);
 }
 
 //扫描
 - (void)scanClick{
-    NSLog(@"正在扫描外设...");
+//    NSLog(@"正在扫描外设...");
     //    [self.myCentralManager scanForPeripheralsWithServices:nil options:@{CBCentralManagerScanOptionAllowDuplicatesKey:@YES}];
     
     [self.myCentralManager scanForPeripheralsWithServices:nil options:nil];
@@ -289,7 +289,7 @@ NSRunLoop* runLoop;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds* NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.myCentralManager stopScan];
-        NSLog(@"扫描超时,停止扫描!");
+//        NSLog(@"扫描超时,停止扫描!");
     });
 }
 
@@ -316,7 +316,7 @@ NSRunLoop* runLoop;
             [myPlaylist addObject:musicBean];
         }
     }
-    NSLog(@"%d", myPlaylist.count);
+//    NSLog(@"%d", myPlaylist.count);
     _musicArray = myPlaylist;
     return myPlaylist;
 }
@@ -367,7 +367,7 @@ NSRunLoop* runLoop;
 }
 //音乐播放完成后
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    NSLog(@"播放结束\n");
+//    NSLog(@"播放结束\n");
     if(palyTag < [_musicArray count] - 1){
         palyTag += 1;
     }else{
@@ -409,7 +409,7 @@ NSRunLoop* runLoop;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
     }
@@ -458,7 +458,7 @@ NSRunLoop* runLoop;
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -484,12 +484,12 @@ NSRunLoop* runLoop;
         // NSString* value = [self hexadecimalString:data];
         NSString* value = [[WWDTools hexadecimalString:data] uppercaseString];
         
-        NSLog(@"characteristic : %@, data : %@, value : %@", characteristic, data, value);
+//        NSLog(@"characteristic : %@, data : %@, value : %@", characteristic, data, value);
         
         //处理接收到的数据
         NSString* idString = [WWDTools stringFromIndexCount:0 count:2 from:value];
         
-        NSLog(@"idString is : %@ \n", idString);
+//        NSLog(@"idString is : %@ \n", idString);
         //计步
         if([@"F7" isEqual:idString]){
             
@@ -573,26 +573,26 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             NSError* error = nil;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"修改数据成功");
+//                                NSLog(@"修改数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         break;
@@ -610,26 +610,26 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             NSError* error = nil;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"修改数据成功");
+//                                NSLog(@"修改数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         break;
@@ -647,26 +647,26 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             NSError* error = nil;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"修改数据成功");
+//                                NSLog(@"修改数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         break;
@@ -684,26 +684,26 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             NSError* error = nil;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"修改数据成功");
+//                                NSLog(@"修改数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         break;
@@ -721,26 +721,26 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             NSError* error = nil;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"修改数据成功");
+//                                NSLog(@"修改数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         break;
@@ -758,26 +758,26 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             NSError* error = nil;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"修改数据成功");
+//                                NSLog(@"修改数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"修改后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         break;
@@ -795,18 +795,18 @@ NSRunLoop* runLoop;
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
                             if([self.managedObjectContext save:&error]){
-                                NSLog(@"保存数据成功");
+//                                NSLog(@"保存数据成功");
                                 recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
+//                                NSLog(@"保存后的数据条数是:%d",recordDateArray.count);
                             }
                         }
                         //存储出错
                         else if(recordDateArray == nil) {
-                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
+//                            NSLog(@"获取recordDateArray出错:%@,%@",error,[error userInfo]);
                         }
                         //这一天的数据已经存在
                         else if(recordDateArray.count > 0){
-                            NSLog(@"这一天的数据已经存在");
+//                            NSLog(@"这一天的数据已经存在");
                             SleepMonitorHistory* sleepMonitorHistory = [recordDateArray objectAtIndex:0];
                             sleepMonitorHistory.recordDate = myDate;
                             sleepMonitorHistory.recordValue = sleepMonitorValue;
@@ -964,8 +964,8 @@ NSRunLoop* runLoop;
                     default:
                         break;
                 }
-                NSArray* recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                NSLog(@"heart history count : %d",recordDateArray.count);
+//                NSArray* recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
+//                NSLog(@"heart history count : %d",recordDateArray.count);
             }
             //计步历史--step
             else if([@"00" isEqual:tag]){
@@ -986,7 +986,7 @@ NSRunLoop* runLoop;
                         request.predicate = [NSPredicate predicateWithFormat:@"recordDate=%@",myDate];
                         NSError* error = nil;
                         NSArray* recordDateArray = [[self.managedObjectContext executeFetchRequest:request error:&error]mutableCopy];
-                        NSLog(@"step array count : %d, %@",recordDateArray.count,myDate);
+//                        NSLog(@"step array count : %d, %@",recordDateArray.count,myDate);
                         if (recordDateArray.count == 0) {
                             PedoStepHistory* pedoStepHistory = [NSEntityDescription insertNewObjectForEntityForName:@"PedoStepHistory" inManagedObjectContext:self.managedObjectContext];
                             pedoStepHistory.recordDate = myDate;
@@ -996,7 +996,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         break;
@@ -1017,7 +1017,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1040,7 +1040,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1063,7 +1063,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1086,7 +1086,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1109,7 +1109,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1132,7 +1132,7 @@ NSRunLoop* runLoop;
                             PedoStepHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1482,7 +1482,7 @@ NSRunLoop* runLoop;
                 NSString* dateTag = [WWDTools stringFromIndexCount:4 count:2 from:value];
                 
                 NSString* stepValueStr = [WWDTools stringFromIndexCount:6 count:6 from:value];
-                NSLog(@"time s value is :%@",stepValueStr);
+//                NSLog(@"time s value is :%@",stepValueStr);
                 switch ([dateTag intValue]) {
                     case 0:{
                         myDate = [WWDTools stringFromIndexCount:0 count:10 from:[NSString stringWithFormat:@"%@",[date dateByAddingTimeInterval:-secondsPerDay * 1]]];
@@ -1499,7 +1499,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         break;
@@ -1519,7 +1519,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1540,7 +1540,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1561,7 +1561,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1582,7 +1582,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1603,7 +1603,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1624,7 +1624,7 @@ NSRunLoop* runLoop;
                             PedoTimeHistory* pedoStepHistory = [recordDateArray objectAtIndex:0];
                             pedoStepHistory.recordDate = myDate;
                             pedoStepHistory.recordValue = stepValueStr;
-                            NSLog(@"数据已经存在!");
+//                            NSLog(@"数据已经存在!");
                             [self saveContext];
                         }
                         
@@ -1634,6 +1634,13 @@ NSRunLoop* runLoop;
                         break;
                 }
             }
+        }
+        //设置数
+        else if([@"FD" isEqual:idString]){
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            NSString* targetStr = [WWDTools stringFromIndexCount:16 count:8 from:value];
+            NSInteger targetI = [WWDTools intFromHexString:targetStr];
+            [defaults setInteger:targetI forKey:@"targetInteger"];
         }
     }
 }
