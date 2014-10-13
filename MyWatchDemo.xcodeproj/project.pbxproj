@@ -99,7 +99,7 @@
 		08BCC68619AED1AB00F60D84 /* HeartRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartRateViewController.m; sourceTree = "<group>"; };
 		08BCC68819AEFB3300F60D84 /* SleepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SleepViewController.h; path = MyWatchDemo/SleepViewController.h; sourceTree = "<group>"; };
 		08BCC68919AEFB3300F60D84 /* SleepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SleepViewController.m; path = MyWatchDemo/SleepViewController.m; sourceTree = "<group>"; };
-		08E33A6119A42AB70034D7D6 /* My Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		08E33A6119A42AB70034D7D6 /* My-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E33A6419A42AB70034D7D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		08E33A6619A42AB70034D7D6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		08E33A6819A42AB70034D7D6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -249,7 +249,7 @@
 		08E33A6219A42AB70034D7D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				08E33A6119A42AB70034D7D6 /* My Watch.app */,
+				08E33A6119A42AB70034D7D6 /* My-Watch.app */,
 				08E33A8219A42AB70034D7D6 /* MyWatchDemoTests.xctest */,
 			);
 			name = Products;
@@ -430,7 +430,7 @@
 			);
 			name = MyWatchDemo;
 			productName = MyWatchDemo;
-			productReference = 08E33A6119A42AB70034D7D6 /* My Watch.app */;
+			productReference = 08E33A6119A42AB70034D7D6 /* My-Watch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		08E33A8119A42AB70034D7D6 /* MyWatchDemoTests */ = {
@@ -625,6 +625,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -643,6 +644,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "f6b27dff-182e-41e5-895c-f42d93479b44";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -664,7 +666,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: wendong wang (DPGK272U4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: wendong wang (DPGK272U4N)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -675,6 +678,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "f6b27dff-182e-41e5-895c-f42d93479b44";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -692,8 +696,8 @@
 				GCC_PREFIX_HEADER = "MyWatchDemo/MyWatchDemo-Prefix.pch";
 				INFOPLIST_FILE = "MyWatchDemo/MyWatchDemo-Info.plist";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "My Watch";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "My-Watch";
+				PROVISIONING_PROFILE = "f6b27dff-182e-41e5-895c-f42d93479b44";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -703,14 +707,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: wendong wang (DPGK272U4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: wendong wang (DPGK272U4N)";
+				"CODE_SIGN_RESOURCE_RULES_PATH[sdk=*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyWatchDemo/MyWatchDemo-Prefix.pch";
 				INFOPLIST_FILE = "MyWatchDemo/MyWatchDemo-Info.plist";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "My Watch";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "My-Watch";
+				PROVISIONING_PROFILE = "f6b27dff-182e-41e5-895c-f42d93479b44";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
