@@ -17,13 +17,17 @@ NSUserDefaults* defaults;
     NSString* endTime = [defaults stringForKey:@"sleepMonitorEndTime"];
     if(startTime != nil){
         _startTimeLabel.text = startTime;
+        [_startTimePicker selectRow:[startTime integerValue] inComponent:0 animated:NO];
     }else{
         _startTimeLabel.text = @"22:00";
+        [_startTimePicker selectRow:22 inComponent:0 animated:NO];
     }
     if(endTime != nil){
         _endTimeLabel.text = endTime;
+        [_startTimePicker selectRow:[endTime integerValue] inComponent:1 animated:NO];
     }else{
         _endTimeLabel.text = @"8:00";
+        [_startTimePicker selectRow:8 inComponent:1 animated:NO];
     }
 }
 

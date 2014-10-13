@@ -21,6 +21,9 @@
 //将HexString转为int
 + (unsigned int)intFromHexString:(NSString *) hexStr;
 
+//将传入的十进制string转换为十六进制的字符串
++ (NSString*)hexStringFromString:(NSString*)string;
+
 //根据传入的index输出count位的String
 + (NSString*)stringFromIndexCount:(NSInteger)index count:(NSInteger)count from:(NSString*)string;
 
@@ -53,4 +56,7 @@
 
 //根据传入的字符串,算出睡眠质量(0是未监测到不算在内)
 + (NSString*)getSleepQualityWithValue:(NSString*)sleepValue;
+
+//根据传入的00:00格式的时间,返回0x **** 格式的字符串
++ (NSString*)getHHMMHexFromHHMMString:(NSString*)hhmmString onOrOff:(BOOL)yesOrNo;
 @end

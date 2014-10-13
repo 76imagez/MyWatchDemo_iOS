@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="k41-or-sFN">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -154,6 +153,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hle-hy-uTI">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="onTintColor" red="0.015686274510000001" green="0.56470588239999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="searchMyWatchSwitch:" destination="VWh-GI-ybB" eventType="valueChanged" id="7j1-Uh-hDV"/>
                                                     </connections>
@@ -199,7 +199,7 @@
                                             <segue destination="wyD-xu-xA2" kind="push" id="6Mg-pA-yL1"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="5pK-81-hNN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" id="5pK-81-hNN">
                                         <rect key="frame" x="0.0" y="218" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5pK-81-hNN" id="YeB-lS-Kke">
@@ -215,6 +215,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="3Tb-7A-JOk" kind="push" id="PBN-1J-EuX"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="MmU-Ey-o58">
                                         <rect key="frame" x="0.0" y="262" width="320" height="44"/>
@@ -307,6 +310,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xnr-zv-uZ0">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="onTintColor" red="0.015686274510000001" green="0.56470588239999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="disconnectedAlarm:" destination="VWh-GI-ybB" eventType="valueChanged" id="cVO-om-bKC"/>
                                                     </connections>
@@ -331,6 +335,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adH-Rg-QjV">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="onTintColor" red="0.015686274510000001" green="0.56470588239999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="antiLoseAlarm:" destination="VWh-GI-ybB" eventType="valueChanged" id="yf2-I8-EVP"/>
                                                     </connections>
@@ -349,6 +354,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljq-ob-fQm">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="onTintColor" red="0.015686274510000001" green="0.56470588239999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="heartRateAlarm:" destination="VWh-GI-ybB" eventType="valueChanged" id="8yp-DU-2RW"/>
                                                     </connections>
@@ -1118,7 +1124,7 @@
             </objects>
             <point key="canvasLocation" x="-1400" y="949"/>
         </scene>
-        <!--Alarm Clock View Controller-->
+        <!--Clock setting-->
         <scene sceneID="Se6-QP-VaD">
             <objects>
                 <viewController id="3Tb-7A-JOk" customClass="AlarmClockViewController" sceneMemberID="viewController">
@@ -1129,13 +1135,78 @@
                     <view key="view" contentMode="scaleToFill" id="mg9-Kt-WuM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="diy_ios_bg_light" translatesAutoresizingMaskIntoConstraints="NO" id="Hw9-3V-MLw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Clock" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ptf-Cq-BPF">
+                                <rect key="frame" x="16" y="64" width="84" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="68t-BB-jgw"/>
+                                    <constraint firstAttribute="height" constant="90" id="Uce-jj-yFx"/>
+                                </constraints>
+                                <color key="textColor" red="0.015686274510000001" green="0.56470588239999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="00:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="shO-yq-NfZ">
+                                <rect key="frame" x="112" y="64" width="97" height="87"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="87" id="EM9-9Y-Npm"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="oDN-HY-Mez">
+                                <rect key="frame" x="0.0" y="159" width="320" height="162"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="kYG-w3-ANx"/>
+                                    <constraint firstAttribute="width" constant="320" id="o8K-16-cOc"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="434856018.29880702">
+                                    <!--2014-10-13 01:20:18 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="datePickerChanged:" destination="3Tb-7A-JOk" eventType="valueChanged" id="1Pm-ZY-NJh"/>
+                                </connections>
+                            </datePicker>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aTi-c1-sfQ">
+                                <rect key="frame" x="255" y="93" width="51" height="31"/>
+                                <color key="onTintColor" red="0.015686274510000001" green="0.56470588239999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="clockSwitchChanged:" destination="3Tb-7A-JOk" eventType="valueChanged" id="M2J-k8-NOd"/>
+                                </connections>
+                            </switch>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hw9-3V-MLw" firstAttribute="leading" secondItem="mg9-Kt-WuM" secondAttribute="leading" id="2iW-ds-9jS"/>
+                            <constraint firstItem="Hw9-3V-MLw" firstAttribute="top" secondItem="mg9-Kt-WuM" secondAttribute="top" id="312-XY-siD"/>
+                            <constraint firstItem="oDN-HY-Mez" firstAttribute="top" secondItem="Ptf-Cq-BPF" secondAttribute="bottom" constant="5" id="81H-oh-ey7"/>
+                            <constraint firstAttribute="trailing" secondItem="aTi-c1-sfQ" secondAttribute="trailing" constant="16" id="AZc-OC-sfB"/>
+                            <constraint firstItem="oDN-HY-Mez" firstAttribute="top" secondItem="aTi-c1-sfQ" secondAttribute="bottom" constant="35" id="BFF-fp-I5B"/>
+                            <constraint firstAttribute="centerX" secondItem="shO-yq-NfZ" secondAttribute="centerX" id="Mez-ls-mag"/>
+                            <constraint firstAttribute="centerX" secondItem="oDN-HY-Mez" secondAttribute="centerX" id="Vfn-hq-pl2"/>
+                            <constraint firstItem="0vM-eg-j4U" firstAttribute="top" secondItem="Hw9-3V-MLw" secondAttribute="bottom" id="Zgd-WE-GZd"/>
+                            <constraint firstItem="oDN-HY-Mez" firstAttribute="top" secondItem="shO-yq-NfZ" secondAttribute="bottom" constant="8" id="ff8-40-as8"/>
+                            <constraint firstAttribute="trailing" secondItem="Hw9-3V-MLw" secondAttribute="trailing" id="g0f-Kd-cmL"/>
+                            <constraint firstAttribute="centerY" secondItem="oDN-HY-Mez" secondAttribute="centerY" id="lXk-g7-fs1"/>
+                            <constraint firstItem="shO-yq-NfZ" firstAttribute="leading" secondItem="Ptf-Cq-BPF" secondAttribute="trailing" constant="12" id="qi9-B5-v0k"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Clock setting" id="2oe-yR-O3E"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="clockSwitch" destination="aTi-c1-sfQ" id="4aF-3q-4wN"/>
+                        <outlet property="clockTextSet" destination="shO-yq-NfZ" id="VFA-YT-uQc"/>
+                        <outlet property="datePicker" destination="oDN-HY-Mez" id="KRS-b8-9Es"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Wh-MD-2D4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288" y="3470"/>
+            <point key="canvasLocation" x="-254" y="3280"/>
         </scene>
         <!--Setting-->
         <scene sceneID="qIh-rs-zqR">

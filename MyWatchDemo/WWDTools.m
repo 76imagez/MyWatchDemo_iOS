@@ -278,6 +278,34 @@ AVAudioPlayer* audioPlayer;
     return sleepQuality;
 }
 
++ (NSString*)hexStringFromString:(NSString*)string{
+    NSInteger intValue = [string integerValue];
+    NSMutableString* result = [[NSMutableString alloc]init];
+    NSString* yearHex = [NSString stringWithFormat:@"%x",intValue];
+    if([yearHex length] < 2){
+        [result appendFormat:@"0%@",yearHex];
+    }else{
+        [result appendString:yearHex];
+    }
+    return result;
+}
+
++ (NSString*)getHHMMHexFromHHMMString:(NSString*)hhmmString onOrOff:(BOOL)yesOrNo{
+    NSString* hh = [self hexStringFromString:[WWDTools stringFromIndexCount:0 count:2 from:hhmmString]];
+    NSString* mm = [self hexStringFromString:[WWDTools stringFromIndexCount:3 count:2 from:hhmmString]];
+
+    NSMutableString* resultStr = [NSMutableString stringWithString:@"e000"];
+    if (yesOrNo) {
+        [resultStr appendFormat:@"0100"];
+    }else{
+        [resultStr appendFormat:@"0000"];
+    }
+    [resultStr appendString:hh];
+    [resultStr appendString:mm];
+    NSString* reslut = [resultStr uppercaseString];
+    return reslut;
+}
+
 @end
 
 
